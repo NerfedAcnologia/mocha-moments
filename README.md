@@ -1,1 +1,1 @@
-Yung working system ilalagay natin sa another branch para hindi nakakalito, dito sa main yung front-end only.
+Dito ilalagay yung working system natin sa branch na to.
