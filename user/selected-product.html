@@ -31,6 +31,29 @@
     .navbar-nav .nav-link {
         padding-bottom: 0.5rem; 
     }
+    .custom-img-wrapper {
+        display: inline-block;
+        position: relative;
+    }
+
+    .background-circle {
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 220px;   
+        height: 220px;
+        background-color: #E59040;
+        border-radius: 50%;
+        z-index: 0;
+    }
+    
+    .custom-img-wrapper img {
+        position: relative;
+        z-index: 1;
+    }
+
+
 </style>
 
 <body>
@@ -94,9 +117,12 @@
 
             <div class="row align-items-center">
 
-                <div class="col-md-5 text-center mb-4 mb-md-0">
+                <div class="col-md-5 text-center mb-4 mb-md-0 position-relative custom-img-wrapper">
+                    <div class="background-circle"></div>
                     <img src="latte.png" alt="Golden Hour Latte" class="img-fluid rounded">
                 </div>
+
+
 
                 <div class="col-md-7">
                     <h3 class="fw-bold text-dark-brown">Golden Hour Latte</h3>
