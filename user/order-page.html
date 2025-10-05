@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - Mocha Moments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #f9f6f2;
+      color: #2d2d2d;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #fff;
+    }
+
+    .navbar-nav .nav-link.active {
+      position: relative;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .navbar-nav .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #E59040;
+      border-radius: 2px;
+    }
+
+    /* Section Title */
+    h2.fw-bold {
+      color: #3a1e0e;
+    }
+
+    /* Order Card */
+    .card {
+      background-color: #fff;
+      border-radius: 20px;
+    }
+
+    .order-status {
+      font-weight: 600;
+    }
+
+    .text-orange {
+      color: #E59040 !important;
+    }
+
+    .order-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .order-progress::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background-color: #dcdcdc;
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 0.4rem;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .step.active .step-icon {
+      background-color: #50d890;
+      color: #fff;
+    }
+
+    .step.complete .step-icon {
+      background-color: #6c757d;
+      color: #fff;
+    }
+
+    .step small {
+      color: #555;
+      font-size: 13px;
+    }
+
+    /* Buttons */
+    .btn-outline-success {
+      border-color: #50d890;
+      color: #50d890;
+      font-weight: 600;
+    }
+
+    .btn-outline-success:hover {
+      background-color: #50d890;
+      color: white;
+    }
+
+    .btn-outline-secondary {
+      border-color: #c7c7c7;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: #c7c7c7;
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #7B4B29;
+      color: white;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #E59040;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="mochalogo.png" alt="Logo" height="70">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li class="nav-item me-3">
+            <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Orders Section -->
+  <section class="py-5">
+    <div class="container">
+      <small class="text-muted">
+        <a href="#" class="text-muted text-decoration-none">Home</a> /
+        <span class="text-black fw-bold">My Orders</span>
+      </small>
+      <h2 class="fw-bold mt-2 mb-4">My Orders</h2>
+
+      <h5 class="fw-semibold mb-1">Current Orders</h5>
+      <p class="text-muted fst-italic mb-4">Now Ready...</p>
+
+      <!-- READY ORDER -->
+      <div class="card shadow-sm p-4 border-0 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <strong>Order #1015</strong><br>
+            <small class="text-muted">Today, 10:12 AM</small>
+          </div>
+          <div class="text-success order-status">Ready</div>
+        </div>
+        <hr>
+
+        <div class="d-flex align-items-center mb-4">
+          <img src="hazelnut.png" alt="Hazelnut Cappuccino" width="70" class="me-3 rounded">
+          <div>
+            <h6 class="mb-0 fw-bold">Hazelnut Cappuccino</h6>
+            <small class="text-muted">3x • ₱135 each</small>
+          </div>
+        </div>
+
+        <div class="order-progress my-4">
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-circle"></i></div>
+            <small>Pending</small>
+          </div>
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-clock"></i></div>
+            <small>Preparing</small>
+          </div>
+          <div class="step active">
+            <div class="step-icon"><i class="fas fa-check"></i></div>
+            <small>Ready</small>
+          </div>
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-check"></i></div>
+            <small>Complete</small>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h5 class="fw-bold text-orange">Total: ₱405</h5>
+          <a href="#" class="btn btn-outline-success btn-sm mt-3 px-4">Proceed to Counter</a>
+        </div>
+      </div>
+
+      <div class="card shadow-sm p-4 border-0 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <strong>Order #1006</strong><br>
+            <small class="text-muted">Today, 7:11 AM</small>
+          </div>
+          <div class="text-orange order-status">Completed</div>
+        </div>
+        <hr>
+
+        <div class="d-flex align-items-center mb-4">
+          <img src="hazelnut.png" alt="Hazelnut Cappuccino" width="70" class="me-3 rounded">
+          <div>
+            <h6 class="mb-0 fw-bold">Hazelnut Cappuccino</h6>
+            <small class="text-muted">1x • ₱135 each</small>
+          </div>
+        </div>
+
+        <div class="order-progress my-4">
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-circle"></i></div>
+            <small>Pending</small>
+          </div>
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-clock"></i></div>
+            <small>Preparing</small>
+          </div>
+          <div class="step">
+            <div class="step-icon"><i class="fas fa-check"></i></div>
+            <small>Ready</small>
+          </div>
+          <div class="step active">
+            <div class="step-icon"><i class="fas fa-check"></i></div>
+            <small>Complete</small>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h5 class="fw-bold text-orange">Total: ₱135</h5>
+          <a href="#" class="btn btn-outline-secondary btn-sm mt-3 px-4">Order Received</a>
+        </div>
+      </div>
+      <hr style="border-top: 1px solid black; margin: 3rem 0; width: 100%;">
+
+        <h4 class="fw-bold mb-4">Order History</h4>
+
+        <div class="card shadow-sm rounded-4 p-4 border-0 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+            <strong>Order #1002</strong><br>
+            <small class="text-muted">September 09, 10:03 AM</small>
+            </div>
+            <div class="fw-semibold text-black">Completed</div>
+        </div>
+        <hr>
+
+        <div class="d-flex align-items-center mb-3">
+            <img src="latte.png" alt="Golden Hour Latte" width="60" class="me-3 rounded">
+            <div class="flex-grow-1">
+            <h6 class="mb-0 fw-bold">Golden Hour Latte</h6>
+            <small class="text-muted">1x</small>
+            </div>
+            <div>₱150</div>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <img src="hamandcheese.png" alt="Ham & Cheese Panini" width="60" class="me-3 rounded">
+            <div class="flex-grow-1">
+            <h6 class="mb-0 fw-bold">Ham & Cheese Panini</h6>
+            <small class="text-muted">1x</small>
+            </div>
+            <div>₱140</div>
+        </div>
+
+        <div class="text-end mt-3 fw-bold fs-5 text-orange">Total: ₱290</div>
+        </div>
+
+        <div class="card shadow-sm rounded-4 p-4 border-0 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+            <strong>Order #1112</strong><br>
+            <small class="text-muted">September 09, 10:03 AM</small>
+            </div>
+            <div class="fw-semibold text-danger">Revoked</div>
+        </div>
+        <hr>
+
+        <div class="d-flex align-items-center mb-3">
+            <img src="latte.png" alt="Golden Hour Latte" width="60" class="me-3 rounded">
+            <div class="flex-grow-1">
+            <h6 class="mb-0 fw-bold">Golden Hour Latte</h6>
+            <small class="text-muted">1x</small>
+            </div>
+            <div>₱150</div>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <img src="latte.png" alt="Ham & Cheese Panini" width="60" class="me-3 rounded">
+            <div class="flex-grow-1">
+            <h6 class="mb-0 fw-bold">Ham & Cheese Panini</h6>
+            <small class="text-muted">1x</small>
+            </div>
+            <div>₱140</div>
+        </div>
+
+        <div class="text-end mt-3 fw-bold fs-5 text-orange">Total: ₱290</div>
+    </div>
+  </section>
+
+  <footer class="pt-5 pb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h3 class="fw-bold">Mocha Moments</h3>
+          <p>Comfort In Every Sip.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Shop Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Drinks</a></li>
+            <li><a href="#">Pastries</a></li>
+            <li><a href="#">Sandwiches & Light Bites</a></li>
+            <li><a href="#">Specials</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Get In Touch</h5>
+          <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>#123, Dagupan City</p>
+          <p class="mb-1"><i class="fas fa-phone me-2"></i>09-6120-2409</p>
+          <p class="mb-1"><i class="fas fa-envelope me-2"></i>mochamoments@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <a href="#" class="fs-5 mx-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="fs-5 mx-2"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="fs-5 mx-2"><i class="fab fa-tiktok"></i></a>
+      </div>
+
+      <div class="text-center mt-3">
+        <small>© 2025 Mocha Moments Coffee Shop.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
